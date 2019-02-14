@@ -52,8 +52,18 @@ function fetchtodo(){
        
     }
 
+//for removing from localStorage
+function removefromstorage(){
+     var todo_list =JSON.parse(localStorage.getItem('todos'))
+     for(var i=0; i< todo_list.length; i++){
+          todo_list.splice(i,1)
+            localStorage.setItem('todos', JSON.stringify(todo_list))
+     }
+}
+
 //for removing todo
 function removetodo(e){
+    removefromstorage()
     var ul = document.getElementById('list');
     var li = ul.children;
     for(var i=0; i<li.length; i++){
@@ -63,7 +73,6 @@ function removetodo(e){
        }
     
     }
-   
 }
 
 $(document).ready(function(e){
@@ -79,6 +88,7 @@ $(document).ready(function(e){
                 $("#remove-todo").toggle($('input[name="todo"]').is(":checked" ) );
             }); 
     
+//           for eye watecher
             $(".jumbotron").mousemove(function(event) {
             var eye = $(".eye");
             var x = (eye.offset().left) + (eye.width() / 2);
