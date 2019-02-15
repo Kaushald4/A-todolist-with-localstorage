@@ -71,10 +71,6 @@ li{
 li:hover{
     box-shadow: 0px 0px 20px rgba(70,70,70,.9);
 }
-label{
-    cursor: pointer;
-    text-align: right;
-}
 
 input[type='checkbox']{
     -webkit-appearance: none;
@@ -116,7 +112,15 @@ input[type='checkbox']:checked::before{
     opacity: 1!important;
     transition: .5s;
 }
-
+p:first-child{
+    display: none;
+}
+footer{
+        display: flex;
+        flex-direction: column;
+        height: 370px;
+        justify-content: flex-end;
+    }
 /*for eye watcher*/
 .eye {
   position: relative;
@@ -137,10 +141,57 @@ input[type='checkbox']:checked::before{
   content: " ";
 }
 
-@media( max-width: 1054px){
+@media( max-width: 1200px){
     .wrap{
         position: relative;
-        left: 10px;
+        left: 500px;
         
+    }
+}
+@media( max-width: 991px){
+    .wrap{
+        position: absolute;
+        left: 370px;
+    }
+}
+@media(max-width: 768px ){
+    #remove-todo{
+        position: absolute;
+        right: 140px;
+        
+    }
+    .wrap{
+        left: 410px;
+    }
+    #section{
+        padding-top: 50px;
+    }
+}
+@media (max-width: 400px){
+    .wrap{
+        position: absolute;
+        left: 310px;
+    }
+    .wrap:hover{
+        width: 280px;
+        color: black;
+    }
+    #remove-todo{
+        position: absolute;
+        right: 20px;
+        top: 50px
+    }
+    #section{
+        padding-top: 40px;
+    }
+    p:first-child{
+        display: block;
+        font-size: 12px;
+    }
+    p:nth-child(2){
+        font-size: 11px;
+    }
+    footer{
+        height: 340px;
     }
 }
