@@ -53,6 +53,7 @@ input[type="text"]{
 }
 #heart{
     float: left;
+    font-size: 20px;
 }
 .wrap:hover input{
     display: block;
