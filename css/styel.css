@@ -51,7 +51,9 @@ input[type="text"]{
     width: 400px;
     cursor: pointer;
 }
-
+#heart{
+    float: left;
+}
 .wrap:hover input{
     display: block;
 }
