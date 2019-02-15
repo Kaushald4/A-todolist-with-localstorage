@@ -5,14 +5,15 @@ document.getElementById('remove-todo')
 //for adding todo
 function addtodo(e){
     var input_value = document.getElementById('name').value;
-    var todo_value = document.textContent = input_value;
+    //for validating that user has typed something
+     if(input_value == ""){
+         alert("Hey! Please Enter Your Todos")
+     } else {
+          var todo_value = document.textContent = input_value[0].toUpperCase() + input_value.substring(1);
     var value = document.createTextNode(todo_value);
     var ul = document.getElementById('list');
     var li = document.createElement('li');
     document.getElementById('name').value = ''
-    setTimeout(()=>{
-            li.classList = "visual"
-    },500)
     var input = document.createElement('input');
     input.type = 'checkbox';
     input.setAttribute('name', 'todo')
@@ -25,7 +26,7 @@ function addtodo(e){
     label.appendChild(value)
     li.appendChild(label);
     ul.appendChild(li)
-    
+    //for checking and init todo array Object
     if(localStorage.getItem('todos') === null ){
         var todos = [];
         todos.push(todo);
@@ -35,11 +36,11 @@ function addtodo(e){
       var todos = JSON.parse(localStorage.getItem('todos'))
       todos.push(todo);
         localStorage.setItem('todos', JSON.stringify(todos))
-       
+       }
     }
-     
+   
 }
-
+//for fetching from local storage
 function fetchtodo(){
     var todo_list =JSON.parse(localStorage.getItem('todos'))
     var ul = document.getElementById('list')
@@ -47,29 +48,35 @@ function fetchtodo(){
     for(var i=0; i<todo_list.length; i++ ){
         var list = todo_list[i].list
              ul.innerHTML += "<li><input id='check'  type='checkbox' name='todo' > <label>"+list+"</label"
-        } 
-        
-       
     }
+}
 
 //for removing from localStorage
 function removefromstorage(){
-     var todo_list =JSON.parse(localStorage.getItem('todos'))
-     for(var i=0; i< todo_list.length; i++){
-          todo_list.splice(i,1)
-            localStorage.setItem('todos', JSON.stringify(todo_list))
-     }
+     var input = document.getElementsByName('todo')
+      var todo_list =JSON.parse(localStorage.getItem('todos'))
+        for (var i=0; i<input.length; i++){
+            if(input[i].checked){
+               for(var j=0; j<todo_list.length; j++){
+                   if(input[i].nextElementSibling.textContent == todo_list[j].list){
+                       todo_list.splice(j, 1)
+                       localStorage.setItem('todos', JSON.stringify(todo_list))
+                   }
+               }
+                
+            }
+        }
 }
 
 //for removing todo
 function removetodo(e){
-    removefromstorage()
+     removefromstorage()
     var ul = document.getElementById('list');
     var li = ul.children;
     for(var i=0; i<li.length; i++){
        while(li[i] && li[i].children[0].checked){
            ul.removeChild(li[i])
-           
+          
        }
     
     }
